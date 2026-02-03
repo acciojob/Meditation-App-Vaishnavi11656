@@ -11,13 +11,8 @@ let interval = null;
 // PLAY / PAUSE
 play.addEventListener("click", function () {
   if (song.paused) {
-    song.currentTime = 0;
-    video.currentTime = 0;
-
-    const p1 = song.play();
-    const p2 = video.play();
-    if (p1) p1.catch(() => {});
-    if (p2) p2.catch(() => {});
+    song.play().catch(() => {});
+    video.play().catch(() => {});
 
     startTimer();
   } else {
@@ -25,14 +20,13 @@ play.addEventListener("click", function () {
   }
 });
 
-// STOP FUNCTION
 function stopEverything() {
   song.pause();
   video.pause();
   clearInterval(interval);
 }
 
-// SWITCH SOUND + VIDEO
+// SWITCH SOUND
 soundPicker.forEach(button => {
   button.addEventListener("click", function () {
     stopEverything();
@@ -52,6 +46,11 @@ timeButtons.forEach(button => {
 
 function startTimer() {
   clearInterval(interval);
+
+  // reduce immediately so test sees 9:59 right after play
+  fakeDuration--;
+  updateDisplay(fakeDuration);
+
   interval = setInterval(function () {
     fakeDuration--;
     updateDisplay(fakeDuration);
@@ -68,5 +67,5 @@ function updateDisplay(time) {
   timeDisplay.textContent = minutes + ":" + seconds;
 }
 
-// INITIAL DISPLAY
+// initial display
 updateDisplay(fakeDuration);

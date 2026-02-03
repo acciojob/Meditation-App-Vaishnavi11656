@@ -1,46 +1,28 @@
-<!DOCTYPE html>
+<div id="app" class="app">
 
-<html>
+  <div class="vid-container">
+    <video class="video" loop>
+      <source src="Sounds/beach.mp4" type="video/mp4">
+    </video>
+  </div>
 
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+  <div class="time-select">
+    <button class="smaller-mins" data-time="120">2 Minutes</button>
+    <button class="medium-mins" data-time="300">5 Minutes</button>
+    <button class="long-mins" data-time="600">10 Minutes</button>
+  </div>
 
-<body>
-	<!-- the entire body must be written by student -->
-	<div id="app" class="app">
-		<div class="vid-container">
-			<video class="video" loop>
-				<source src="Sounds/beach.mp4" type="video/mp4">
-			</video>
-		</div>
-		<div class=" player-container">
-			<audio class="song">
-				<source src="Sounds/beach.mp3" type="audio/mpeg">
-			</audio>
+  <div class="player-container">
+    <audio class="song">
+      <source src="Sounds/beach.mp3" type="audio/mpeg">
+    </audio>
+    <img src="play.svg" class="play">
+    <h3 class="time-display">10:0</h3>
+  </div>
 
-			<img src="play.svg" class="play" alt="play button">
-			<h3 class="time-display">10:0</h3>
-		</div>
+  <div class="sound-picker">
+    <button data-sound="Sounds/rain.mp3" data-video="Sounds/rain.mp4"></button>
+    <button data-sound="Sounds/beach.mp3" data-video="Sounds/beach.mp4"></button>
+  </div>
 
-		<div class="sound-picker">
-			<button data-sound="Sounds/beach.mp3" data-video="Sounds/beach.mp4">Meditation A</button>
-			<button data-sound="Sounds/beach.mp3" data-video="Sounds/beach.mp4">Meditation B</button>
-		</div>
-
-		<div class="time-select">
-			<button id="Smaller-mins" date-time="120">2 Minutes</button>
-			<button id="Medium-mins" date-time="300">5 Minutes</button>
-			<button id="Long-mins" date-time="600">10 Minutes</button>
-		</div>
-
-
-
-
-	</div>
-    <script type="text/javascript" src="./script.js">
-</script>
-
-</body>
-
-</html>
+</div>
