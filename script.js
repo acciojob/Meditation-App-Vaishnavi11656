@@ -6,38 +6,47 @@ const soundPicker = document.querySelectorAll(".sound-picker button");
 const timeButtons = document.querySelectorAll(".time-select button");
 
 let fakeDuration = 600;
-let interval;
+let interval = null;
 
 // PLAY / PAUSE
 play.addEventListener("click", function () {
   if (song.paused) {
-    song.play();
-    video.play();
+    song.currentTime = 0;
+    video.currentTime = 0;
+
+    const p1 = song.play();
+    const p2 = video.play();
+    if (p1) p1.catch(() => {});
+    if (p2) p2.catch(() => {});
+
     startTimer();
   } else {
-    song.pause();
-    video.pause();
-    clearInterval(interval);
+    stopEverything();
   }
 });
+
+// STOP FUNCTION
+function stopEverything() {
+  song.pause();
+  video.pause();
+  clearInterval(interval);
+}
 
 // SWITCH SOUND + VIDEO
 soundPicker.forEach(button => {
   button.addEventListener("click", function () {
+    stopEverything();
     song.src = this.getAttribute("data-sound");
     video.src = this.getAttribute("data-video");
-    if (!song.paused) {
-      song.play();
-      video.play();
-    }
   });
 });
 
 // TIME BUTTONS
 timeButtons.forEach(button => {
   button.addEventListener("click", function () {
-    fakeDuration = this.getAttribute("data-time");
+    fakeDuration = parseInt(this.getAttribute("data-time"));
     updateDisplay(fakeDuration);
+    stopEverything();
   });
 });
 
@@ -46,10 +55,9 @@ function startTimer() {
   interval = setInterval(function () {
     fakeDuration--;
     updateDisplay(fakeDuration);
+
     if (fakeDuration <= 0) {
-      clearInterval(interval);
-      song.pause();
-      video.pause();
+      stopEverything();
     }
   }, 1000);
 }
@@ -59,3 +67,6 @@ function updateDisplay(time) {
   let seconds = time % 60;
   timeDisplay.textContent = minutes + ":" + seconds;
 }
+
+// INITIAL DISPLAY
+updateDisplay(fakeDuration);
