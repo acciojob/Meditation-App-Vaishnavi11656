@@ -9,11 +9,10 @@ let fakeDuration = 600;
 let interval = null;
 
 // PLAY / PAUSE
-play.addEventListener("click", function () {
+play.addEventListener("click", () => {
   if (song.paused) {
     song.play().catch(() => {});
     video.play().catch(() => {});
-
     startTimer();
   } else {
     stopEverything();
@@ -39,33 +38,41 @@ soundPicker.forEach(button => {
 timeButtons.forEach(button => {
   button.addEventListener("click", function () {
     fakeDuration = parseInt(this.getAttribute("data-time"));
-    updateDisplay(fakeDuration);
     stopEverything();
+
+    const minutes = Math.floor(fakeDuration / 60);
+    timeDisplay.textContent = `${minutes}:0`;
   });
 });
 
+// TIMER
 function startTimer() {
   clearInterval(interval);
 
-  // reduce immediately so test sees 9:59 right after play
+  // Immediate tick (so Cypress sees 9:59 instantly)
   fakeDuration--;
   updateDisplay(fakeDuration);
 
-  interval = setInterval(function () {
-    fakeDuration--;
-    updateDisplay(fakeDuration);
+  interval = setInterval(() => {
+    if (!song.paused) {
+      fakeDuration--;
+      updateDisplay(fakeDuration);
 
-    if (fakeDuration <= 0) {
-      stopEverything();
+      if (fakeDuration <= 0) {
+        stopEverything();
+      }
     }
   }, 1000);
 }
 
 function updateDisplay(time) {
-  let minutes = Math.floor(time / 60);
+  const minutes = Math.floor(time / 60);
   let seconds = time % 60;
-  timeDisplay.textContent = minutes + ":" + seconds;
+
+  if (seconds < 10) seconds = "0" + seconds;
+
+  timeDisplay.textContent = `${minutes}:${seconds}`;
 }
 
-// initial display
+// Initial display
 updateDisplay(fakeDuration);

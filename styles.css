@@ -15,7 +15,6 @@
   overflow: hidden;
 }
 
-/* Background Video */
 .vid-container {
   position: fixed;
   top: 0;
@@ -32,7 +31,6 @@
   filter: blur(3px) brightness(0.7);
 }
 
-/* LEFT SIDE TIME BUTTONS */
 .time-select {
   position: absolute;
   left: 40px;
@@ -59,7 +57,6 @@
   color: black;
 }
 
-/* CENTER PLAYER */
 .player-container {
   display: flex;
   flex-direction: column;
@@ -82,7 +79,6 @@
   letter-spacing: 2px;
 }
 
-/* RIGHT SIDE SOUND PICKER */
 .sound-picker {
   position: absolute;
   right: 40px;
@@ -101,11 +97,10 @@
   cursor: pointer;
 }
 
-/* Individual Sound Colors */
 .sound-picker button:nth-child(1) {
-  background: #4972a1; /* Rain */
+  background: #4972a1;
 }
 
 .sound-picker button:nth-child(2) {
-  background: #b45c4b; /* Beach */
+  background: #b45c4b;
 }

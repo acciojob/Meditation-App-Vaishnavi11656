@@ -1,28 +1,41 @@
-<div id="app" class="app">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meditation App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app" class="app">
 
-  <div class="vid-container">
-    <video class="video" loop>
-      <source src="Sounds/beach.mp4" type="video/mp4">
-    </video>
+    <div class="vid-container">
+      <video class="video" loop>
+        <source src="Sounds/beach.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="time-select">
+      <button class="smaller-mins" data-time="120">2 Minutes</button>
+      <button class="medium-mins" data-time="300">5 Minutes</button>
+      <button class="long-mins" data-time="600">10 Minutes</button>
+    </div>
+
+    <div class="player-container">
+      <audio class="song">
+        <source src="Sounds/beach.mp3" type="audio/mpeg">
+      </audio>
+      <img src="play.svg" class="play">
+      <h3 class="time-display">10:0</h3>
+    </div>
+
+    <div class="sound-picker">
+      <button data-sound="Sounds/rain.mp3" data-video="Sounds/rain.mp4"></button>
+      <button data-sound="Sounds/beach.mp3" data-video="Sounds/beach.mp4"></button>
+    </div>
+
   </div>
 
-  <div class="time-select">
-    <button class="smaller-mins" data-time="120">2 Minutes</button>
-    <button class="medium-mins" data-time="300">5 Minutes</button>
-    <button class="long-mins" data-time="600">10 Minutes</button>
-  </div>
-
-  <div class="player-container">
-    <audio class="song">
-      <source src="Sounds/beach.mp3" type="audio/mpeg">
-    </audio>
-    <img src="play.svg" class="play">
-    <h3 class="time-display">10:0</h3>
-  </div>
-
-  <div class="sound-picker">
-    <button data-sound="Sounds/rain.mp3" data-video="Sounds/rain.mp4"></button>
-    <button data-sound="Sounds/beach.mp3" data-video="Sounds/beach.mp4"></button>
-  </div>
-
-</div>
+  <script src="app.js"></script>
+</body>
+</html>
